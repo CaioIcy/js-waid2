@@ -1,5 +1,4 @@
 var pressedKeys = [];
-var canShoot = true;
 
 function onKeyDown(e){
 	e=e||event;
@@ -75,6 +74,16 @@ function keyInput(){
 	else if(!pressedKeys[VK_Z]){
 	}
 	
+	//shoot projectile
+	if(pressedKeys[VK_SPACEBAR] && !isShooting && projectiles.length < 5){
+		projectiles[projectileCounter] = new Projectile(player.x, player.y+20, sprite_fireball_1, 15, 15, true, player.direction);
+		projectileCounter++;
+		isShooting = true;
+	}
+	else if(!pressedKeys[VK_SPACEBAR]){
+		isShooting = false;
+	}
+	
 	//hiei
 	if(pressedKeys[VK_Q] && !isHieing){
 		isHieing = true;
@@ -94,16 +103,6 @@ function keyInput(){
 		player.y-=5;
 	}
 	else if(!pressedKeys[VK_E]){
-	}
-	
-	//shoot projectile
-	if(pressedKeys[VK_SPACEBAR] && !isShooting && projectiles.length < 5){
-		projectiles[projectileCounter] = new Projectile(player.x, player.y+20, sprite_fireball_1, 15, 15, true, player.direction);
-		projectileCounter++;
-		isShooting = true;
-	}
-	else if(!pressedKeys[VK_SPACEBAR]){
-		isShooting = false;
 	}
 }
 

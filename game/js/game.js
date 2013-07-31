@@ -4,7 +4,6 @@ var jumpCharge = 0;
 var speed = 5;
 var friction = 0.98;
 var animation = 0;
-const fireRate = 50;
 
 var playerSprite = sprite_mario_left;
 var floor = canvas.height-playerSprite.height;
@@ -27,11 +26,11 @@ function update(){
 	}
 	
 	//Player
-	if(player.y!=floor) player.midAir = true;
-	if(player.midAir){
+	//if(player.y!=floor) player.midAir = true;
+	//if(player.midAir){
 		applyGravity(player);
-		if(!player.midAir) player.vx=player.vx*0.75;
-	}
+		//if(!player.midAir) player.vx=player.vx*0.75;
+	//}
 	player.vy *= friction;
     player.y += player.vy;
 	if(!player.midAir) player.vx *= friction;
@@ -79,9 +78,11 @@ function render(){
 }
 
 function applyGravity(obj){
-	gravity = 15/40;
-	obj.vy += gravity;
-	if(obj.y >= floor){
+	if(obj.midAir){
+		gravity = 15/40;
+		obj.vy += gravity;
+	}
+	if(obj.y > floor && obj.midAir){
 		obj.vy = 0;
 		obj.y = floor;
 		obj.midAir = false;
