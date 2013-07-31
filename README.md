@@ -22,3 +22,4 @@ Just run ***index.html*** to start the game. If the sprites do not load, refresh
 ___
 ###To Do's
 * Fix animations
+* Menu
