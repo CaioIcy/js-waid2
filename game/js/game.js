@@ -5,6 +5,9 @@ player = new Player(canvas.width/2, floor, playerSprite, 45, 60, false);
 coin = new Item(300, 5, sprite_coin_front, 41/2, 47/2, true);
 
 function update(){
+	//Jump Charge Bar
+	drawBar(10,20,100,jumpCharge,true,'green');
+
 	//Keyboard Input
 	keyInput();
 	
@@ -99,20 +102,20 @@ function playerCheckVx(){
 }
 
 function drawBar(posx,posy,size,state,horizontal,colorInside){
-	//"Strength"
-	if(hud) d2.clearRect(14, 5, 50, 20);
-	if(hud) d2.fillText("Strength", 15, 15);
+	//"Jump Charge"
+	if(hud) d2.clearRect(22, 5, 78, 15);
+	if(hud) d2.fillText("Jump Charge", 23, 15);
 
 	d2.fillStyle="black";
 	if(horizontal){
-		d2.fillRect(posx, posy, size, 20);
+		d2.fillRect(posx, posy-1, size+2, 20);
 		d2.fillStyle = colorInside;
-		d2.fillRect(posx+1, posy+1, state, 18);
+		d2.fillRect(posx+1, posy, state, 18);
 	}
 	else if(!horizontal){
-		d2.fillRect(posx, posy, 20, size);
+		d2.fillRect(posx, posy-1, 20, size+2);
 		d2.fillStyle = colorInside;
-		d2.fillRect(posx+1, posy+(size-state)-1, 18, state);
+		d2.fillRect(posx+1, posy+(size-state), 18, state);
 	}
 	d2.fillStyle="black";
 }
@@ -121,4 +124,3 @@ function drawBar(posx,posy,size,state,horizontal,colorInside){
 //window.onload = 
 window.setInterval("render();", 1);
 window.setInterval("update();", onefps);
-window.setInterval("drawBar(25,25,100,jumpCharge,false,'green');", onefps);
