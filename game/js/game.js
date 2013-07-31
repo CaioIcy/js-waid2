@@ -26,7 +26,10 @@ function update(){
 	}
 	player.vy *= friction;
     player.y += player.vy;
-	player.vx *= friction;
+	if(!player.midAir)
+		player.vx *= friction;
+	else if(player.midAir)
+		player.vx *= airFriction;
 	playerCheckVx();
 	player.x += player.vx;
 	if(player.y < 7.5)

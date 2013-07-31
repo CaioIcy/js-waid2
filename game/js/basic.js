@@ -8,6 +8,7 @@ var projectileCounter = 0;
 var jumpCharge = 0;
 var maxSpeed = 5;
 var friction = 0.98;
+var airFriction = 0.999;
 var animation = 0;
 
 //all
