@@ -1,20 +1,8 @@
-//HeartJump mod
-
-var hud = true;
-
-var jumpCharge = 0;
-var speed = 5;
-var friction = 0.98;
-var animation = 0;
-
 var playerSprite = sprite_mario_left;
-var floor=canvas.height - 60; // -playerSprite.height
+var floor = canvas.height - 60; // -playerSprite.height
 
 player = new Player(canvas.width/2, floor, playerSprite, 45, 60, false);
 coin = new Item(300, 5, sprite_coin_front, 41/2, 47/2, true);
-
-var projectiles = [];
-var projectileCounter = 0;
 
 function update(){
 	//Keyboard Input
@@ -38,9 +26,8 @@ function update(){
 	}
 	player.vy *= friction;
     player.y += player.vy;
-	//if(!player.midAir)
-		player.vx *= friction;
-		if(Math.abs(player.vx)<=0.00001) player.vx=0;
+	player.vx *= friction;
+	playerCheckVx();
 	player.x += player.vx;
 	if(player.y < 7.5)
 		player.vy = 7.5;
@@ -81,7 +68,7 @@ function render(){
 	d.drawImage(player.sprite, player.x, player.y, player.width, player.height);
 	
 	//Projectile
-	for(i=0; i<projectiles.length; i++){
+	for(var i=0; i<projectiles.length; i++){
 		var bullet = projectiles[i];
 		d.drawImage(bullet.sprite, bullet.x, bullet.y, bullet.width, bullet.height);
 	}
@@ -91,7 +78,7 @@ function render(){
 
 function applyGravity(obj){
 	if(obj.midAir){
-		gravity = 15/40;
+		var gravity = 15/40;
 		obj.vy += gravity;
 		if(obj.y > floor){
 			obj.vy = 0;
@@ -100,6 +87,12 @@ function applyGravity(obj){
 		}
 	}
 		
+}
+
+function playerCheckVx(){
+	if(Math.abs(player.vx)<=0.00001) player.vx=0;
+	if(player.vx>maxSpeed) player.vx=maxSpeed;
+	if(player.vx<-maxSpeed) player.vx=-maxSpeed;
 }
 
 function drawBar(posx,posy,size,state,horizontal,colorInside){

@@ -1,20 +1,18 @@
-var pressedKeys = [];
-
-function onKeyDown(e){
+window.onkeydown = function(e){
 	e=e||event;
 	pressedKeys[e.keyCode] = true;
 	
 	if(hud) d2.clearRect(canvas.width-84, 0, canvas.width, 19);
 	if(hud) d2.fillText("keyDown: " + e.keyCode, canvas.width-83, 15);
-}
+};
 
-function onKeyUp(e){
+window.onkeyup = function(e){
 	e=e||event;
 	pressedKeys[e.keyCode] = false;
 	
 	if(hud) d2.clearRect(canvas.width-83, 25, 83, 15);
 	if(hud) d2.fillText("keyUp: " + e.keyCode, canvas.width-83, 35);
-}
+};
 
 function keyInput(){
 
@@ -22,7 +20,7 @@ function keyInput(){
 	if(pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
 		player.sprite = sprite_mario_left;
 		player.direction = "left";
-		if (player.vx > -speed) {
+		if (player.vx > -maxSpeed) {
 			player.vx--;
 		}
 	}
@@ -44,7 +42,7 @@ function keyInput(){
 	if(pressedKeys[VK_RIGHT] || pressedKeys[VK_D]){
 		player.sprite = sprite_mario_right;
 		player.direction = "right";
-		if (player.vx < speed) {
+		if (player.vx < maxSpeed) {
 			player.vx++;
 		}
 	}
@@ -115,6 +113,3 @@ function keyInput(){
 	}
 
 }
-
-window.onkeydown = onKeyDown;
-window.onkeyup = onKeyUp;
