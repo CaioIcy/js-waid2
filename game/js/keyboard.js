@@ -2,19 +2,23 @@ window.onkeydown = function(e){
 	e=e||event;
 	pressedKeys[e.keyCode] = true;
 	
-	if(hud) d2.clearRect(canvas.width-84, 0, canvas.width, 19);
-	if(hud) d2.fillText("keyDown: " + e.keyCode, canvas.width-83, 15);
+	if(hud){
+		d2.clearRect(canvas.width-84, 0, canvas.width, 19);
+		d2.fillText("keyDown: " + e.keyCode, canvas.width-83, 15);
+	}
 };
 
 window.onkeyup = function(e){
 	e=e||event;
 	pressedKeys[e.keyCode] = false;
 	
-	if(hud) d2.clearRect(canvas.width-83, 25, 83, 15);
-	if(hud) d2.fillText("keyUp: " + e.keyCode, canvas.width-83, 35);
+	if(hud){
+		d2.clearRect(canvas.width-83, 25, 83, 15);
+		d2.fillText("keyUp: " + e.keyCode, canvas.width-83, 35);
+	}
 };
 
-function keyInput(){
+function updateKeyInput(){
 
 	//move left
 	if(pressedKeys[VK_LEFT] || pressedKeys[VK_A]){
