@@ -119,9 +119,6 @@ function drawBar(posx,posy,size,state,horizontal,colorInside){
 
 //////////////
 //window.onload = 
-
 window.setInterval("render();", 1);
 window.setInterval("update();", onefps);
 window.setInterval("drawBar(25,25,100,jumpCharge,false,'green');", onefps);
-
-//////////////

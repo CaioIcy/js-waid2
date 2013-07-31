@@ -111,5 +111,5 @@ function keyInput(){
 	else if(!pressedKeys[VK_H]){
 		isPressing = false;
 	}
-
+	
 }
