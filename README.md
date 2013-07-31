@@ -15,7 +15,7 @@ CONTROLS (so far)
 - **E**: small float  
 
 
-Just run ***waid2.html*** to start the game. If the sprites do not load, refresh!
+Just run ***index.html*** to start the game. If the sprites do not load, refresh!
 
 ~ _Caio Nardelli_  
 
