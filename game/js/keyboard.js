@@ -4,16 +4,16 @@ function onKeyDown(e){
 	e=e||event;
 	pressedKeys[e.keyCode] = true;
 	
-	d2.clearRect(canvas.width-84, 0, canvas.width, 19);
-	d2.fillText("keyDown: " + e.keyCode, canvas.width-83, 15);
+	if(hud) d2.clearRect(canvas.width-84, 0, canvas.width, 19);
+	if(hud) d2.fillText("keyDown: " + e.keyCode, canvas.width-83, 15);
 }
 
 function onKeyUp(e){
 	e=e||event;
 	pressedKeys[e.keyCode] = false;
 	
-	d2.clearRect(canvas.width-84, 0, canvas.width, 40);
-	d2.fillText("keyUp: " + e.keyCode, canvas.width-83, 35);
+	if(hud) d2.clearRect(canvas.width-83, 25, 83, 15);
+	if(hud) d2.fillText("keyUp: " + e.keyCode, canvas.width-83, 35);
 }
 
 function keyInput(){
@@ -90,12 +90,28 @@ function keyInput(){
 		
 		if(player.direction == "right")player.x+=100
 		else if(player.direction == "left")player.x-=100
+		player.vx = player.vx*0.5;
 		
 		if(player.x<0) player.x = 0;
 		if(player.x >= canvas.width-player.sprite.width) player.x = canvas.width-player.sprite.width;
 	}
 	else if(!pressedKeys[VK_Q]){
 		isHieing = false;
+	}
+	
+	//HUD on/off
+	if(pressedKeys[VK_H] && !isPressing ){
+		isPressing = true;
+		
+		if(hud){
+			hud=false;
+			d2.clearRect(0,0,canvas2.width,canvas2.height);
+		}
+		else if(!hud)
+			hud=true;
+	}
+	else if(!pressedKeys[VK_H]){
+		isPressing = false;
 	}
 
 }

@@ -9,8 +9,8 @@ var d2 = canvas2.getContext('2d');
 
 d2.font='10pt arial';
 
-function fillPink(){
-	d.fillStyle="pink";
+function clearScreen(color){
+	d.fillStyle=color;
 	d.fillRect(0,0,canvas.width,canvas.height);
 }
 

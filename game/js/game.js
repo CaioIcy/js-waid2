@@ -1,5 +1,7 @@
 //HeartJump mod
 
+var hud = true;
+
 var jumpCharge = 0;
 var speed = 5;
 var friction = 0.98;
@@ -28,7 +30,7 @@ function update(){
 		else coin.sprite = sprite_coin_side;
 	}
 	
-	//Player
+	//Player	
 	if(player.y!=floor) player.midAir = true;
 	if(player.midAir){
 		applyGravity(player);
@@ -36,11 +38,16 @@ function update(){
 	}
 	player.vy *= friction;
     player.y += player.vy;
-	if(!player.midAir) player.vx *= friction;
+	//if(!player.midAir)
+		player.vx *= friction;
+		if(Math.abs(player.vx)<=0.00001) player.vx=0;
 	player.x += player.vx;
-	if(player.y < 7.5) player.vy = 7.5;
-	if(player.x <= 0) player.vx = 1;
-	if(player.x >= canvas.width-player.sprite.width) player.vx = -1;
+	if(player.y < 7.5)
+		player.vy = 7.5;
+	if(player.x <= 0)
+		player.vx = 1;
+	if(player.x >= canvas.width-player.sprite.width)
+		player.vx = -1;
 	
 	//Projectile
 	for(i=0; i<projectiles.length; i++){
@@ -62,13 +69,15 @@ function update(){
 
 function render(){	
 	//d.clearRect(0,0,canvas.width,canvas.height);
-	fillPink();
+	clearScreen("pink");
 
 	//Coin	
-	d.clearRect(coin.x, coin.y, coin.width, coin.height);
-	d.drawImage(coin.sprite, coin.x, coin.y, coin.width, coin.height);
+	if(hud) d2.clearRect(coin.x, coin.y, coin.width, coin.height);
+	if(hud) d2.drawImage(coin.sprite, coin.x, coin.y, coin.width, coin.height);
 	
 	//Player
+	if(hud) d2.clearRect(449,25,200,17);
+	if(hud) d2.fillText("Vx: "+player.vx,450,35);
 	d.drawImage(player.sprite, player.x, player.y, player.width, player.height);
 	
 	//Projectile
@@ -76,26 +85,27 @@ function render(){
 		var bullet = projectiles[i];
 		d.drawImage(bullet.sprite, bullet.x, bullet.y, bullet.width, bullet.height);
 	}
-	d2.clearRect(450,1,90,20);
-	d2.fillText("Projectiles: "+projectiles.length,450,15);
+	if(hud) d2.clearRect(450,1,80,17);
+	if(hud) d2.fillText("Projectiles: "+projectiles.length,450,15);
 }
 
 function applyGravity(obj){
 	if(obj.midAir){
 		gravity = 15/40;
 		obj.vy += gravity;
+		if(obj.y > floor){
+			obj.vy = 0;
+			obj.y = floor;
+			obj.midAir = false;
+		}
 	}
-	if(obj.y > floor && obj.midAir){
-		obj.vy = 0;
-		obj.y = floor;
-		obj.midAir = false;
-	}	
+		
 }
 
 function drawBar(posx,posy,size,state,horizontal,colorInside){
 	//"Strength"
-	d2.clearRect(14, 5, 50, 20);
-	d2.fillText("Strength", 15, 15);
+	if(hud) d2.clearRect(14, 5, 50, 20);
+	if(hud) d2.fillText("Strength", 15, 15);
 
 	d2.fillStyle="black";
 	if(horizontal){

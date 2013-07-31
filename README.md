@@ -12,7 +12,7 @@ CONTROLS (so far)
 - **Spacebar**: shoot projectile  
 - **Z**: stop horizontal movement  
 - **Q**: teleport horizontally  
-
+- **H**: HUD on/off
 
 Just run ***index.html*** to start the game. If the sprites do not load, refresh!
 
