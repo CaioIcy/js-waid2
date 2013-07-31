@@ -33,7 +33,8 @@ function update(){
 		player.vx *= friction;
 	else if(player.midAir)
 		player.vx *= airFriction;
-	playerCheckVx();
+	if(player.vx!=0)
+		playerCheckVx();
 	player.x += player.vx;
 	if(player.y < 7.5)
 		player.vy = 7.5;
@@ -97,8 +98,8 @@ function applyGravity(obj){
 
 function playerCheckVx(){
 	if(Math.abs(player.vx)<=0.00001) player.vx=0;
-	if(player.vx>maxSpeed) player.vx=maxSpeed;
-	if(player.vx<-maxSpeed) player.vx=-maxSpeed;
+	else if(player.vx>maxSpeed) player.vx=maxSpeed;
+	else if(player.vx<-maxSpeed) player.vx=-maxSpeed;
 }
 
 function drawBar(posx,posy,size,state,horizontal,colorInside){
