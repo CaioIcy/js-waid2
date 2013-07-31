@@ -2,31 +2,26 @@ var playerSprite = sprite_mario_left;
 var floor = canvas.height - 60; // -playerSprite.height
 
 player = new Player(canvas.width/2, floor, playerSprite, 45, 60, false);
-coin = new Item(300, 5, sprite_coin_front, 41/2, 47/2, true);
+coin = new Item(700, 390, sprite_coin_front, 41/2, 47/2, true);
 
 function update(){
 	//Jump Charge Bar
 	drawBar(10,20,100,jumpCharge,true,'green');
-	//Keyboard Input
-	updateKeyInput();
+
 	//animation counter (bad)
 	if(animation<7500) animation++;
 	else animation = 0;
-	//Coin
+	
+	updateKeyInput();
 	updateCoin();
-	//Player	
 	updatePlayer();
-	//Projectile
 	updateProjectile();
 }
 
 function render(){	
 	clearScreen("canvas", "pink");
-	//Coin	
 	renderCoin();
-	//Player
 	renderPlayer();
-	//Projectile
 	renderProjectile();
 }
 

@@ -12,11 +12,15 @@ function updateCoin(){
 		if(animation%20 > 10) coin.sprite = sprite_coin_front;
 		else coin.sprite = sprite_coin_side;
 	}
+	
+	//coin.x++;
+	if(coin.x >= canvas.width) coin.x = 0;
+	
 }
 
 function renderCoin(){
-	if(hud){
-		d2.clearRect(coin.x, coin.y, coin.width, coin.height);
-		d2.drawImage(coin.sprite, coin.x, coin.y, coin.width, coin.height);
-	}
+	//if(hud){
+		//d2.clearRect(coin.x, coin.y, coin.width, coin.height);
+		d.drawImage(coin.sprite, coin.x, coin.y, coin.width, coin.height);
+	//}
 }

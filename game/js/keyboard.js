@@ -69,11 +69,18 @@ function updateKeyInput(){
 		}
 	}
 	
-	//stop movement
+	//stop horizontal movement
 	if(pressedKeys[VK_Z]){
 		player.vx = 0;
 	}
 	else if(!pressedKeys[VK_Z]){
+	}
+	
+	//stop vertical movement
+	if(pressedKeys[VK_X]){
+		player.vy = 0;
+	}
+	else if(!pressedKeys[VK_X]){
 	}
 	
 	//shoot projectile

@@ -11,6 +11,7 @@ CONTROLS (so far)
 - **D** *or* **Right**: move right  
 - **Spacebar**: shoot projectile  
 - **Z**: stop horizontal movement  
+- **X**: stop vertical movement  
 - **Q**: teleport horizontally  
 - **H**: HUD on/off
 

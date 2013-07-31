@@ -39,3 +39,22 @@ function clearScreen(canv, color){
 function getTimestamp(){
 	return window.performance.now();
 }
+
+function getCollisionBounds(obj1, obj2){
+	if((obj2.y<(obj1.y+obj1.height)) && obj2.x<(obj1.x+obj1.width) && (obj2.y+obj1.height>obj1.y) && obj2.x+obj1.width>obj1.x)
+		return true;
+	else
+		return false;
+}
+
+function testCollision(){
+	//console.log("testing collision");
+	var x = player.x;
+	var vx = player.vx;
+	var y = player.y;
+	var vy = player.vy;
+	var w = player.width;
+	var h = player.height;
+	
+	d.fillRect(x-vx, y-vy, w, h);
+}

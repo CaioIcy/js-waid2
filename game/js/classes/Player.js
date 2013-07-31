@@ -33,6 +33,9 @@ function updatePlayer(){
 		player.vx = 1;
 	if(player.x >= canvas.width-player.sprite.width)
 		player.vx = -1;
+		
+	testCollision(player);	
+	
 }
 
 function renderPlayer(){
@@ -47,4 +50,10 @@ function playerCheckVx(){
 	if(Math.abs(player.vx)<=0.00001) player.vx=0;
 	else if(player.vx>maxSpeed) player.vx=maxSpeed;
 	else if(player.vx<-maxSpeed) player.vx=-maxSpeed;
+}
+
+function collisionPlayerCoin(){
+	if(getCollisionBounds(player, coin)){
+		console.log("colisao");
+	}
 }
