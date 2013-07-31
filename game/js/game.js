@@ -6,7 +6,10 @@ var friction = 0.98;
 var animation = 0;
 
 var playerSprite = sprite_mario_left;
-var floor = canvas.height-playerSprite.height;
+var floor=canvas.height - 60; // -playerSprite.height
+
+player = new Player(canvas.width/2, floor, playerSprite, 45, 60, false);
+coin = new Item(300, 5, sprite_coin_front, 41/2, 47/2, true);
 
 var projectiles = [];
 var projectileCounter = 0;
@@ -26,11 +29,11 @@ function update(){
 	}
 	
 	//Player
-	//if(player.y!=floor) player.midAir = true;
-	//if(player.midAir){
+	if(player.y!=floor) player.midAir = true;
+	if(player.midAir){
 		applyGravity(player);
-		//if(!player.midAir) player.vx=player.vx*0.75;
-	//}
+		if(!player.midAir) player.vx=player.vx*0.75;
+	}
 	player.vy *= friction;
     player.y += player.vy;
 	if(!player.midAir) player.vx *= friction;
@@ -109,12 +112,10 @@ function drawBar(posx,posy,size,state,horizontal,colorInside){
 }
 
 //////////////
-player = new Player(canvas.width/2, floor, playerSprite, 45, 60, false);
-coin = new Item(300, 5, sprite_coin_front, 41/2, 47/2, true);
-
 //window.onload = 
 
 window.setInterval("render();", 1);
 window.setInterval("update();", onefps);
 window.setInterval("drawBar(25,25,100,jumpCharge,false,'green');", onefps);
+
 //////////////

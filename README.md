@@ -12,7 +12,6 @@ CONTROLS (so far)
 - **Spacebar**: shoot projectile  
 - **Z**: stop horizontal movement  
 - **Q**: teleport horizontally  
-- **E**: small float  
 
 
 Just run ***index.html*** to start the game. If the sprites do not load, refresh!
@@ -21,5 +20,6 @@ Just run ***index.html*** to start the game. If the sprites do not load, refresh
 
 ___
 ###To Do's
+* Fix floor (chrome issue)
 * Fix animations
-* Menu
+* Create Menu

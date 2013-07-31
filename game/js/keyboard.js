@@ -97,13 +97,7 @@ function keyInput(){
 	else if(!pressedKeys[VK_Q]){
 		isHieing = false;
 	}
-	
-	//float up
-	if(pressedKeys[VK_E]){
-		player.y-=5;
-	}
-	else if(!pressedKeys[VK_E]){
-	}
+
 }
 
 window.onkeydown = onKeyDown;
